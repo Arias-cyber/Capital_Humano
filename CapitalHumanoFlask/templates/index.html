@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Listado de personas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon"
+        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
+        type="image/x-icon">
 </head>
+
 <body>
-<h1>Sistema de administracion empleados </h1>
-<div>
-    Total de personas: {{total_empleados}}
-</div>
-<div>
-    <a href="agregar">Agregar Empleado</a>
-</div>
-<div>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellidoooo</th>
-                <th>Domicilio</th>
-                <th></th>
-                <th></th>
-                <th></th>
 
+    <div class='container-fluid'>
+        <div class="row text-white p-3" style="background-color: #563d7c;">
+            <h1 class="ml-5">Sistema de administracion de empleados </h1>
 
-            </tr>
-        </thead>
-        <tbody>
-            {% for empleado in empleados%}
-            <tr>
+        </div>
+        <br>
 
-                <td>{{empleado.nombre}}</td>
-                <td>{{empleado.apellido}}</td>
-                <td>{{empleado.domicilio}}</td>
-                <td>{{empleado.dni}}</td>
-                <td>{{empleado.legajo}}</td>
-                <th><a href="ver/{{empleado.legajo}}">Ver</a></th>
-                <th><a href="editar/{{empleado.legajo}}">Editar</a></th>
-                <th><a href="eliminar/{{empleado.legajo}}">Eliminar</a></th>
+        <div class="row">
+            <div class="col-9 text-uppercase">
+                Total de personas: {{total_empleados}}
+            </div>
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            <div class="col-3">
+                <a href="agregar">Agregar Empleado</a>
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Legajo</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Domicilio</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in empleados%}
+                <tr>
+
+                    <td scope="row">{{empleado.legajo}}</td>
+                    <td>{{empleado.apellido}}</td>
+                    <td>{{empleado.nombre}}</td>
+                    <td>{{empleado.dni}}</td>
+                    <td>{{empleado.domicilio}}</td>
+                    <th><a href="ver/{{empleado.legajo}}">Ver</a></th>
+                    <th><a href="editar/{{empleado.legajo}}">Editar</a></th>
+                    <th><a href="eliminar/{{empleado.legajo}}">Eliminar</a></th>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 </body>
+
 </html>

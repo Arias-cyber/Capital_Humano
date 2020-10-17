@@ -1,16 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Ver Empleado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon"
+        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
+        type="image/x-icon">
+
 </head>
+
 <body>
-<h1>Ver Empleado</h1>
-<div>DNI Empleado: {{empleado.dni}}</div>
-<div>Nombre: {{empleado.nombre}}</div>
-<div>Apellido: {{empleado.apellido}}</div>
-<div>Domicilio: {{empleado.domicilio}}</div>
-<br/>
-<a href="{{url_for('inicio')}}">Rregresar al inicio</a>
+    <div class="container-fluid">
+        <div class="row text-white p-3" style="background-color: #563d7c;">
+            <h1 class="ml-5 col-10">Ver Empleado </h1>
+            <div class="col-1 text-white">
+                <a href="{{url_for('inicio')}}" style="text-decoration: none; color:white">
+                    Atras
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">Apellido: </div>
+                <div class="col-6">{{empleado.apellido}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">Nombre: </div>
+                <div class="col-6">{{empleado.nombre}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">Legajo: </div>
+                <div class="col-6">{{empleado.legajo}}</div>
+            </div>
+
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">DNI: </div>
+                <div class="col-6">{{empleado.dni}}</div>
+            </div>
+
+            <div class="row text-capitalize" style="font-weight: 600;">
+                <div class="col-6">Sexo: </div>
+                <div class="col-6">{{empleado.sexo}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6"> Fecha de nacimiento</div>
+                <div class="col-6">{{empleado.fecha_nacimiento}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">Domicilio: </div>
+                <div class="col-6">{{empleado.domicilio}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6"> Fecha de ingreso:</div>
+                <div class="col-6">{{empleado.fecha_ingreso}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6"> Fecha de salida:</div>
+                <div class="col-6">{{empleado.fecha_salida}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6"> Fecha de cese:</div>
+                <div class="col-6">{{empleado.fecha_cese}}</div>
+            </div>
+
+            <div class="row" style="font-weight: 600;">
+                <div class="col-6">Estado general: </div>
+                <div class="col-6">{{empleado.estado_general}}</div>
+            </div>
+
+
+
+        </div>
+        <a href="{{url_for('inicio')}}">Rregresar al inicio</a>
+        Aca habria que poner otro acceso para editar
+    </div>
 </body>
+
 </html>
