@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # configuracion de la bd
 USER_DB = 'postgres'
-PASS_DB = '1234'
+PASS_DB = 'admin'
 URL_DB = 'localhost'
 NAME_DB = 'capital_db'
 FULL_URL_DB = f'postgresql://{USER_DB}:{PASS_DB}@{URL_DB}/{NAME_DB}'

@@ -11,90 +11,97 @@
 </head>
 
 <body>
-    <form method="POST">
-        {{forma.csrf_token}}
-        <div>
-            <div class='row' style="background-color: #563d7c;">
-                <h1 class="col-12 p-3 ml-5 text-white">
-                    Editar Empleado
-                </h1>
-            </div>
-        </div>
+    <div class="container-fluid">
         <form method="POST">
-
             {{forma.csrf_token}}
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5 control-label" style="font-weight: 600;">
-                    {{forma.dni.label}} </div>
-                <div class="col-6 p-3">{{forma.dni(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.legajo.label}}</div>
-                <div class="col-6 p-3"> {{forma.legajo(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.telefono.label}}</div>
-                <div class="col-6 p-3"> {{forma.telefono(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.nombre.label}} </div>
-                <div class="col-6 p-3"> {{forma.nombre(size=30,class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.apellido.label}} </div>
-                <div class="col-6 p-3">{{forma.apellido(size=30,class="col-12")}} </div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.domicilio.label}} </div>
-                <div class="col-6 p-3">{{forma.domicilio(size=30,class="col-12")}} </div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.fecha_ingreso.label}} </div>
-                <div class="col-6 p-3"> {{forma.fecha_ingreso(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.fecha_salida.label}} </div>
-                <div class="col-6 p-3"> {{forma.fecha_salida(class="col-12")}} </div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.fecha_nacimiento.label}}</div>
-                <div class="col-6 p-3"> {{forma.fecha_nacimiento(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.fecha_cese.label}}</div>
-                <div class="col-6 p-3"> {{forma.fecha_cese(class="col-12")}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.estado_general.label}}</div>
-                <div class="col-6 p-3">{{forma.estado_general(size=30,class="col-12")}} </div>
-            </div>
-
-            <div class="row">
-                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.sexo.label}}</div>
-                <div class="col-6 p-3"> {{forma.sexo(size=30,class="col-12")}} </div>
-            </div>
-
-            <div class="row">
-                <div class="col-5 p-3 ml-5 pl-5"> {{forma.foto}}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 ml-5 pl-5" style="font-weight: 600;">
-                    {{forma.enviar(class="btn btn-outline-primary")}}
+            <div>
+                <div class='row' style="background-color: #563d7c;">
+                    <h1 class="col-10 p-3 ml-5 text-white">
+                        Editar Empleado
+                    </h1>
+                    <div class="col-1 text-white mt-4">
+                        <a href="{{url_for('inicio')}}" style="text-decoration: none; color:white">
+                            Atras
+                        </a>
+                    </div>
                 </div>
             </div>
-        </form>
+            <form method="POST">
+
+                {{forma.csrf_token}}
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5 control-label" style="font-weight: 600;">
+                        {{forma.dni.label}} </div>
+                    <div class="col-6 p-3">{{forma.dni(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.legajo.label}}</div>
+                    <div class="col-6 p-3"> {{forma.legajo(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.telefono.label}}</div>
+                    <div class="col-6 p-3"> {{forma.telefono(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.nombre.label}} </div>
+                    <div class="col-6 p-3"> {{forma.nombre(size=30,class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.apellido.label}} </div>
+                    <div class="col-6 p-3">{{forma.apellido(size=30,class="col-12")}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.domicilio.label}} </div>
+                    <div class="col-6 p-3">{{forma.domicilio(size=30,class="col-12")}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.fecha_ingreso.label}} </div>
+                    <div class="col-6 p-3"> {{forma.fecha_ingreso(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.fecha_salida.label}} </div>
+                    <div class="col-6 p-3"> {{forma.fecha_salida(class="col-12")}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.fecha_nacimiento.label}}</div>
+                    <div class="col-6 p-3"> {{forma.fecha_nacimiento(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.fecha_cese.label}}</div>
+                    <div class="col-6 p-3"> {{forma.fecha_cese(class="col-12")}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.estado_general.label}}</div>
+                    <div class="col-6 p-3">{{forma.estado_general(size=30,class="col-12")}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;"> {{forma.sexo.label}}</div>
+                    <div class="col-6 p-3"> {{forma.sexo(size=30,class="col-12")}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5 p-3 ml-5 pl-5"> {{forma.foto}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ml-5 pl-5" style="font-weight: 600;">
+                        {{forma.enviar(class="btn btn-outline-primary")}}
+                    </div>
+                </div>
+            </form>
+    </div>
 </body>
 
 </html>
