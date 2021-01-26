@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empleado</title>
+</head>
+<body>
+<h1>Editar Empleado</h1>
+<form method="POST">
+    {{forma.csrf_token}}
+
+    <p>
+        {{forma.dni.label}}<br/>
+        {{forma.dni}}
+    </p>
+
+    <p>
+        {{forma.legajo.label}}<br/>
+        {{forma.legajo}}
+
+    </p>
+
+    <p>
+        {{forma.telefono.label}}<br/>
+        {{forma.telefono}}
+    </p>
+
+    <p>
+        {{forma.nombre.label}} <br/>
+        {{forma.nombre(size=30)}}
+    </p>
+
+    <p>
+        {{forma.apellido.label}}<br/>
+        {{forma.apellido(size=30)}}
+    </p>
+
+    <p>
+        {{forma.domicilio.label}}<br/>
+        {{forma.domicilio(size=30)}}
+    </p>
+
+    <p>
+        {{forma.fecha_ingreso.label}}<br/>
+        {{forma.fecha_ingreso}}
+    </p>
+
+    <p>
+        {{forma.fecha_salida.label}}<br/>
+        {{forma.fecha_salida}}
+    </p>
+
+    <p>
+        {{forma.fecha_nacimiento.label}}<br/>
+        {{forma.fecha_nacimiento}}
+    </p>
+
+    <p>
+        {{forma.fecha_cese.label}}<br/>
+        {{forma.fecha_cese}}
+    </p>
+
+    <p>
+        {{forma.estado_general.label}}<br/>
+        {{forma.estado_general(size=30)}}
+    </p>
+
+    <p>
+        {{forma.sexo.label}}<br/>
+        {{forma.sexo(size=30)}}
+    </p>
+
+
+
+    <p>
+        {{forma.enviar()}}
+    </p>
+</form>
+</body>
+</html>

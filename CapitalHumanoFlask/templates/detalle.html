@@ -13,11 +13,9 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row" style="background-color: #563d7c;">
-            <h1 class=" text-white ml-5 col-10  p-3">
-                Ver Empleado
-            </h1>
-            <div class="col-1 text-white mt-4">
+        <div class="row text-white p-3" style="background-color: #563d7c;">
+            <h1 class="ml-5 col-10">Ver Empleado </h1>
+            <div class="col-1 text-white">
                 <a href="{{url_for('inicio')}}" style="text-decoration: none; color:white">
                     Atras
                 </a>
@@ -77,18 +75,40 @@
                 <div class="col-6"> Fecha de cese:</div>
                 <div class="col-6">{{empleado.fecha_cese}}</div>
             </div>
+            {% for emp in cant%}
+                <div class="row" style="font-weight: 600;">
+                    <div class="col-6">Sindicato: </div>
+                    <div class="col-6">{{emp.nombre}}</div>
+                </div>
+            {% endfor %}
+
+            {% for emp in can%}
+                <div class="row" style="font-weight: 600;">
+                    <div class="col-6">Obra Social: </div>
+                    <div class="col-6">{{emp.nombre}}</div>
+                </div>
+            {% endfor %}
 
             <div class="row" style="font-weight: 600;">
                 <div class="col-6">Estado general: </div>
                 <div class="col-6">{{empleado.estado_general}}</div>
             </div>
 
+            <div>
+                <a href="imagen/{{empleado.legajo}}">Ver foto</a>
+            </div>
 
+            <div>
+                <a href="prueba/{{empleado.legajo}}">Agregar Sindicato</a>
+            </div>
 
         </div>
         <a href="{{url_for('inicio')}}">Rregresar al inicio</a>
+
         Aca habria que poner otro acceso para editar
-    </div>
+        </div>
+
+
 </body>
 
 </html>

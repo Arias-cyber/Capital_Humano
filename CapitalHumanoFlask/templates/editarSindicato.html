@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Sindicato</title>
+    <link rel="shortcut icon"
+        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
+        type="image/x-icon">
+    <!--link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div>
+            <div class='row' style="background-color: #563d7c;">
+                <h1 class="col-12 p-3 ml-5 text-white">
+                    Editar Sindicato
+                </h1>
+            </div>
+        </div>
+        <form method="POST">
+
+            {{forma.csrf_token}}
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5 control-label" style="font-weight: 600;">
+                    {{forma.nombre.label}} </div>
+                <div class="col-6 p-3">{{forma.nombre(class="col-12")}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.domicilio.label}}</div>
+                <div class="col-6 p-3"> {{forma.domicilio(class="col-12")}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{forma.telefono.label}}</div>
+                <div class="col-6 p-3"> {{forma.telefono(class="col-12")}}</div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 ml-5 pl-5" style="font-weight: 600;">
+                    {{forma.enviar(class="btn btn-primary")}}
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js></script>
+</body>
+
+</html>
