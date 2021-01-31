@@ -31,6 +31,8 @@ class Empleado(db.Model):
     #syndicate = relationship("Sindicato")
     suscripcion = db.relationship('Sindicato', secondary=subs, backref=db.backref('subscribers', lazy='dynamic'))
     suscription = db.relationship('ObraSocial', secondary=subsc, backref=db.backref('subscriber', lazy='dynamic'))
+    formaciones_academicas= db.relationship('Formacion_Academica',backref='emp',lazy=True)
+    aptitudes = db.relationship('Aptitud',backref='emp',lazy=True)
 
 
     def __str__(self):
@@ -74,5 +76,19 @@ class ObraSocial(db.Model):
     domicilio = db.Column(db.String(250))
 
 
+class Formacion_Academica(db.Model):
+    __tablename__ = 'formacion_academica'
+    id = db.Column(db.Integer, primary_key = True)
+    titulo = db.Column(db.String(250))
+    descripcion = db.Column(db.String(250))
+    institucion = db.Column(db.String(45))
+    empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
+
+class Aptitud(db.Model):
+    __tablename__ = 'aptitud'
+    id = db.Column(db.Integer, primary_key = True)
+    aptitud = db.Column(db.String(250))
+    descripcion = db.Column(db.String(250))
+    empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
 
 

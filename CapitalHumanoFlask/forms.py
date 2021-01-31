@@ -3,11 +3,11 @@ from wtforms import IntegerField, StringField, SubmitField, DateTimeField, FileF
 from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
 
-from models import Sindicato, ObraSocial
+from models import Sindicato, ObraSocial, Aptitud, Formacion_Academica
 
 
 class EmpleadoForm(FlaskForm):
-    dni = IntegerField('Dni')
+    dni = IntegerField('DNI')
     legajo = IntegerField('Legajo')
     telefono = IntegerField('Telefono')
     nombre = StringField('Nombre', validators=[DataRequired()])
@@ -55,3 +55,25 @@ class ChoiceSindForm(FlaskForm):
 
 class ChoiceOSForm(FlaskForm):
     optos = QuerySelectField(query_factory=obra_query, allow_blank=False, get_label='nombre')
+
+
+
+
+class AptitudForm(FlaskForm):
+    aptitud = StringField("Nombre de la Aptitud")
+    descripcion = StringField("Descripcion")
+    enviar = SubmitField('Enviar')
+
+class FormacionForm(FlaskForm):
+    titulo = StringField("Titulo")
+    descripcion = StringField("Descripcion")
+    institucion= StringField("Institucion")
+    enviar = SubmitField('Enviar')
+
+
+
+def sindicato_query():
+    return Aptitud.query
+
+def obra_query():
+    return Formacion_Academica.query

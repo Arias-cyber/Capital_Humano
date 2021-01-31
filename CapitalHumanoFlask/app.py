@@ -5,8 +5,8 @@ from flask_migrate import Migrate
 from werkzeug.utils import redirect, secure_filename
 
 from database import db
-from forms import EmpleadoForm, SindicatoForm, ObraSocialForm, ChoiceSindForm, ChoiceOSForm
-from models import Empleado, Img, Sindicato, ObraSocial
+from forms import EmpleadoForm, SindicatoForm, ObraSocialForm, ChoiceSindForm, ChoiceOSForm, AptitudForm
+from models import Empleado, Img, Sindicato, ObraSocial, Aptitud
 
 app = Flask(__name__)
 
@@ -78,20 +78,21 @@ def ver_detalle(legajo):
 
 @app.route('/agregar', methods=['GET','POST'])
 def agregar():
-
-
     empleado = Empleado()
     empleadoForm = EmpleadoForm(obj=empleado) #indico el modelo a que asociado
+    print('Esto es antes del if')
     if request.method == 'POST':
         if empleadoForm.validate_on_submit():
            empleadoForm.populate_obj(empleado)
            app.logger.debug(f'empleado a insertar: {empleado}')
            #Insertamos el nuevo registro
            db.session.add(empleado)
-
            db.session.commit()
            return redirect(url_for('inicio'))
     return render_template('agregar.html', forma = empleadoForm)
+
+
+
 
 @app.route('/editar/<int:legajo>', methods=['POST','GET'])
 def editar(legajo):
@@ -255,3 +256,53 @@ def selectSind(legajo):
           return "<h1>Cargado con exito</h1>"
 
     return render_template('pruebaSelect.html', form=form)
+
+
+#Todo sobre aptitudes
+### Llegue a la conclusion de que se debe cambiar la relacion entre aptitud y empleado a una de muchos a muchos
+
+@app.route('/aptitudes/agregarAptitud',methods=['GET','POST']) 
+def cargar_aptitud():
+    aptitud = Aptitud()
+    aptitudForm= AptitudForm(obj=aptitud)
+    if request.method == 'POST':
+        if aptitudForm.validate_on_submit():
+            aptitudForm.populate_obj(aptitud)
+            app.logger.debug(f'Aptitud a cargar: {aptitud}')
+            db.session.add(aptitud)
+            db.session.commit()
+            return redirect(url_for('listadoDeAptitudes'))
+    return render_template('agregarAptitud.html',form = AptitudForm())
+
+
+
+
+@app.route('/aptitudes/editarAptitud/<int:id>', methods=['POST','GET'])
+def editarAptitud(id):
+    aptitud = Aptitud.query.get_or_404(id)
+    aptitudForma = AptitudForm(obj=aptitud)
+    if request.method == 'POST':
+        if aptitudForma.validate_on_submit():
+            aptitudForma.populate_obj(aptitud)
+            app.logger.debug(f'Aptitud a actualizar: {aptitud}')
+            db.session.commit()
+            return redirect(url_for('listadoDeAptitudes'))
+    return render_template('editarAptitud.html', form = aptitudForma)
+
+
+@app.route('/aptitudes/listarAptitudes')
+def listadoDeAptitudes():
+    aptitudes = Aptitud.query.all()
+    total_aptitudes = Aptitud.query.count()
+    app.logger.debug(f'Listado aptitudes: {aptitudes}')
+    app.logger.debug(f'Total Empleados: {total_aptitudes}')
+    return  render_template('listarAptitudes.html', aptitudes= aptitudes, total_aptitudes= total_aptitudes)
+
+
+@app.route('/aptitudes/eliminar/<int:id>')
+def eliminarAptitud(id):
+    aptitud = Aptitud.query.get_or_404(id)
+    app.logger.debug(f'Aptitud a eliminar: {aptitud}')
+    db.session.delete(aptitud)
+    db.session.commit()
+    return redirect(url_for('listadoDeAptitudes'))
