@@ -5,8 +5,8 @@ from flask_migrate import Migrate
 from werkzeug.utils import redirect, secure_filename
 
 from database import db
-from forms import EmpleadoForm, SindicatoForm, ObraSocialForm, ChoiceSindForm, ChoiceOSForm, AptitudForm
-from models import Empleado, Img, Sindicato, ObraSocial, Aptitud
+from forms import EmpleadoForm, SindicatoForm, ObraSocialForm, ChoiceSindForm, ChoiceOSForm, AptitudForm, FormacionForm
+from models import Empleado, Img, Sindicato, ObraSocial, Aptitud, Formacion_Academica
 
 app = Flask(__name__)
 
@@ -261,6 +261,14 @@ def selectSind(legajo):
 #Todo sobre aptitudes
 ### Llegue a la conclusion de que se debe cambiar la relacion entre aptitud y empleado a una de muchos a muchos
 
+@app.route('/aptitudes/listarAptitudes')
+def listadoDeAptitudes():
+    aptitudes = Aptitud.query.all()
+    total_aptitudes = Aptitud.query.count()
+    app.logger.debug(f'Listado aptitudes: {aptitudes}')
+    app.logger.debug(f'Total Empleados: {total_aptitudes}')
+    return  render_template('listarAptitudes.html', aptitudes= aptitudes, total_aptitudes= total_aptitudes)
+
 @app.route('/aptitudes/agregarAptitud',methods=['GET','POST']) 
 def cargar_aptitud():
     aptitud = Aptitud()
@@ -273,8 +281,6 @@ def cargar_aptitud():
             db.session.commit()
             return redirect(url_for('listadoDeAptitudes'))
     return render_template('agregarAptitud.html',form = AptitudForm())
-
-
 
 
 @app.route('/aptitudes/editarAptitud/<int:id>', methods=['POST','GET'])
@@ -290,14 +296,6 @@ def editarAptitud(id):
     return render_template('editarAptitud.html', form = aptitudForma)
 
 
-@app.route('/aptitudes/listarAptitudes')
-def listadoDeAptitudes():
-    aptitudes = Aptitud.query.all()
-    total_aptitudes = Aptitud.query.count()
-    app.logger.debug(f'Listado aptitudes: {aptitudes}')
-    app.logger.debug(f'Total Empleados: {total_aptitudes}')
-    return  render_template('listarAptitudes.html', aptitudes= aptitudes, total_aptitudes= total_aptitudes)
-
 
 @app.route('/aptitudes/eliminar/<int:id>')
 def eliminarAptitud(id):
@@ -306,3 +304,67 @@ def eliminarAptitud(id):
     db.session.delete(aptitud)
     db.session.commit()
     return redirect(url_for('listadoDeAptitudes'))
+
+
+
+@app.route('/aptitudes/ver/<int:id>')
+def verAptitud(id):
+    aptitud = Aptitud.query.get_or_404(id)
+    app.logger.debug(f'Ver Aptitud: {aptitud}')
+    return  render_template('verAptitud.html', aptitud = aptitud)
+
+
+
+#Todo sobre formacion academica
+
+@app.route('/formacion/listarFormaciones')
+def listadoDeFormaciones():
+    formaciones = Formacion_Academica.query.all()
+    total_formaciones = Formacion_Academica.query.count()
+    app.logger.debug(f'Listado formaciones: {formaciones}')
+    app.logger.debug(f'Total Empleados: {total_formaciones}')
+    return  render_template('listarFormaciones.html', formaciones= formaciones, total_formaciones= total_formaciones)
+
+
+@app.route('/formacion/agregarFormacion',methods=['GET','POST']) 
+def cargar_formacion():
+    formacion_academica = Formacion_Academica()
+    formacionForm= FormacionForm(obj=formacion_academica)
+    if request.method == 'POST':
+        if formacionForm.validate_on_submit():
+            formacionForm.populate_obj(formacion_academica)
+            app.logger.debug(f'Formacion a cargar: {formacion_academica}')
+            db.session.add(formacion_academica)
+            db.session.commit()
+            return redirect(url_for('listadoDeFormaciones'))
+    return render_template('agregarFormacion.html',form = FormacionForm())
+
+
+@app.route('/formacion/editarFormacion/<int:id>', methods=['POST','GET'])
+def editarFormacion(id):
+    formacion_academica = Formacion_Academica.query.get_or_404(id)
+    formacionForm = FormacionForm(obj=formacion_academica)
+    if request.method == 'POST':
+        if formacionForm.validate_on_submit():
+            formacionForm.populate_obj(formacion_academica)
+            app.logger.debug(f'Formacion a actualizar: {formacion_academica}')
+            db.session.commit()
+            return redirect(url_for('listadoDeFormaciones'))
+    return render_template('editarFormacion.html', form = formacionForm)
+
+
+@app.route('/formacion/eliminar/<int:id>')
+def eliminarFormacion(id):
+    formacion_academica = Formacion_Academica.query.get_or_404(id)
+    app.logger.debug(f'Formacion a eliminar: {formacion_academica}')
+    db.session.delete(formacion_academica)
+    db.session.commit()
+    return redirect(url_for('listadoDeFormaciones'))
+
+
+
+@app.route('/formacion/ver/<int:id>')
+def verFormacion(id):
+    formacion_academica = Formacion_Academica.query.get_or_404(id)
+    app.logger.debug(f'Ver Formacion: {formacion_academica}')
+    return  render_template('verFormacion.html', formacion = formacion_academica)

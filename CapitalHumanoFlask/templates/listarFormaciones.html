@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de formaciones academicas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon"
+        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
+        type="image/x-icon">
+</head>
+
+<body>
+
+    <div class='container-fluid'>
+        <div class="row text-white p-3" style="background-color: #563d7c;">
+            <h1 class="ml-5">Listado de formaciones academicas </h1>
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-9 text-uppercase">
+                Total de formaciones: {{total_formaciones}}
+            </div>
+
+            <div class="col-3">
+                <a href="/formacion/agregarFormacion">Agregar formacion</a>
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Institucion</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for formacion in formaciones%}
+                <tr>
+                    <td scope="row">{{formacion.titulo}}</td>
+                    <td>{{formacion.descripcion}}</td>
+                    <td>{{formacion.institucion}}</td>
+                    <th><a href="ver/{{formacion.id}}">Ver</a></th>
+                    <th><a href="editarFormacion/{{formacion.id}}">Editar</a></th>
+                    <th><a href="eliminar/{{formacion.id}}">Eliminar</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

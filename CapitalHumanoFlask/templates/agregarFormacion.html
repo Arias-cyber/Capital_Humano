@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar formacion</title>
+    <link rel="shortcut icon"
+        href="https://www.flaticon.com/svg/vstatic/svg/1828/1828919.svg?token=exp=1612039882~hmac=b93d03f18a17792b2835c72a3e08a377"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <div>
+            <div class='row' style="background-color: #563d7c;">
+                <h1 class="col-12 p-3 ml-5 text-white">
+                    Agregar Formacion
+                </h1>
+            </div>
+        </div>
+        <form method="POST">
+            {{form.csrf_token}}
+
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5 control-label" style="font-weight: 600;">
+                    {{form.titulo.label}} </div>
+                <div class="col-6 p-3">{{form.titulo(class='col-12')}}</div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{form.descripcion.label}}</div>
+                <div class="col-6 p-3"> {{form.descripcion(class="col-12")}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-2 p-3 ml-5 pl-5" style="font-weight: 600;">{{form.institucion.label}}</div>
+                <div class="col-6 p-3"> {{form.institucion(class="col-12")}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 ml-5 pl-5" style="font-weight: 600;">
+                    {{form.enviar(class="btn btn-primary")}}
+                </div>
+            </div>
+
+
+        </form>
+
+
+
+
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js></script>
+
+</body>
+
+</html>
