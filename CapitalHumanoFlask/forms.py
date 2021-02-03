@@ -7,7 +7,7 @@ from models import Sindicato, ObraSocial, Aptitud, Formacion_Academica
 
 
 class EmpleadoForm(FlaskForm):
-    dni = IntegerField('DNI')
+    dni = IntegerField('Dni')
     legajo = IntegerField('Legajo')
     telefono = IntegerField('Telefono')
     nombre = StringField('Nombre', validators=[DataRequired()])
@@ -55,9 +55,6 @@ class ChoiceSindForm(FlaskForm):
 
 class ChoiceOSForm(FlaskForm):
     optos = QuerySelectField(query_factory=obra_query, allow_blank=False, get_label='nombre')
-
-
-
 
 class AptitudForm(FlaskForm):
     aptitud = StringField("Nombre de la Aptitud")

@@ -2,6 +2,17 @@ from sqlalchemy.orm import relationship
 
 from app import db
 
+from flask_login import UserMixin
+
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(1000))
+    admin = db.Column(db.Boolean, default=False)
+
+
 subs = db.Table('subs',
     db.Column('legajo', db.Integer, db.ForeignKey('emp.legajo')),
     db.Column('id', db.Integer, db.ForeignKey('syndicate.id'))
@@ -75,7 +86,6 @@ class ObraSocial(db.Model):
     telefono = db.Column(db.BigInteger)
     domicilio = db.Column(db.String(250))
 
-
 class Formacion_Academica(db.Model):
     __tablename__ = 'formacion_academica'
     id = db.Column(db.Integer, primary_key = True)
@@ -90,5 +100,8 @@ class Aptitud(db.Model):
     aptitud = db.Column(db.String(250))
     descripcion = db.Column(db.String(250))
     empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
+
+
+
 
 
