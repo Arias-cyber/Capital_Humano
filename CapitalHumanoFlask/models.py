@@ -12,6 +12,18 @@ subsc = db.Table('subsc',
     db.Column('id', db.Integer, db.ForeignKey('obra_social.id'))
 )
 
+
+formacion_empleado = db.Table('formacion_empleado',
+    db.Column('empleado_legajo',db.Integer,db.ForeignKey('emp.legajo')),
+    db.Column('formacion_id',db.Integer,db.ForeignKey('formacion_academica.id'))
+)
+
+aptitud_empleado= db.Table('aptitud_empleado',
+    db.Column('empleado_legajo',db.Integer,db.ForeignKey('emp.legajo')),
+    db.Column('aptitud_id',db.Integer,db.ForeignKey('aptitud.id'))
+)
+
+
 class Empleado(db.Model):
     __tablename__ = 'emp'
 
@@ -31,8 +43,9 @@ class Empleado(db.Model):
     #syndicate = relationship("Sindicato")
     suscripcion = db.relationship('Sindicato', secondary=subs, backref=db.backref('subscribers', lazy='dynamic'))
     suscription = db.relationship('ObraSocial', secondary=subsc, backref=db.backref('subscriber', lazy='dynamic'))
-    formaciones_academicas= db.relationship('Formacion_Academica',backref='emp',lazy=True)
-    aptitudes = db.relationship('Aptitud',backref='emp',lazy=True)
+    formaciones_academicas= db.relationship('Formacion_Academica', secondary=formacion_empleado, backref=db.backref('formacion', lazy='dynamic'))
+    #aptitudes = db.relationship('Aptitud',backref='emp',lazy=True)
+    aptitudes= db.relationship('Aptitud',secondary=aptitud_empleado,backref=db.backref('aptitud_empleado',lazy='dynamic'))
 
 
     def __str__(self):
@@ -82,13 +95,13 @@ class Formacion_Academica(db.Model):
     titulo = db.Column(db.String(250))
     descripcion = db.Column(db.String(250))
     institucion = db.Column(db.String(45))
-    empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
+    #empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
 
 class Aptitud(db.Model):
     __tablename__ = 'aptitud'
     id = db.Column(db.Integer, primary_key = True)
     aptitud = db.Column(db.String(250))
     descripcion = db.Column(db.String(250))
-    empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
+    #empleado_dni= db.Column(db.Integer, db.ForeignKey('emp.legajo'),nullable=True)
 
 
