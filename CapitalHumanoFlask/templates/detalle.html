@@ -16,7 +16,7 @@
         <div class="row text-white p-3" style="background-color: #563d7c;">
             <h1 class="ml-5 col-10">Ver Empleado </h1>
             <div class="col-1 text-white">
-                <a href="{{url_for('inicio')}}" style="text-decoration: none; color:white">
+                <a href="{{url_for('main.profile')}}" style="text-decoration: none; color:white">
                     Atras
                 </a>
             </div>
@@ -99,11 +99,11 @@
             </div>
 
             <div>
-                <a href="prueba/{{empleado.legajo}}">Agregar Sindicato</a>
+                <a href="select/{{empleado.legajo}}">Agregar Sindicato</a>
             </div>
 
         </div>
-        <a href="{{url_for('inicio')}}">Rregresar al inicio</a>
+        <a href="{{url_for('main.profile')}}">Rregresar al inicio</a>
 
         Aca habria que poner otro acceso para editar
         </div>

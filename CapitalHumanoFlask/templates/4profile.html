@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "1base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de personas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="shortcut icon"
-        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
-        type="image/x-icon">
-</head>
+{% block content %}
 <h1 class="title">
   Welcome, {{ name }}!!!
-
 </h1>
 <body>
 
@@ -28,7 +19,7 @@
             </div>
 
             <div class="col-3">
-                <a href="profile/agregar">Agregar Empleado</a>
+                <a href="agregar">Agregar Empleado</a>
             </div>
         </div>
         <br>
@@ -55,10 +46,10 @@
                     <td>{{empleado.nombre}}</td>
                     <td>{{empleado.dni}}</td>
                     <td>{{empleado.domicilio}}</td>
-                    <th><a href="profile/ver/{{empleado.legajo}}">Ver</a></th>
-                    <th><a href="profile/editar/{{empleado.legajo}}">Editar</a></th>
-                    <th><a href="profile/eliminar/{{empleado.legajo}}">Eliminar</a></th>
-                    <th><a href="profile/upload/{{empleado.legajo}}">Agregar Foto</a></th>
+                    <th><a href="ver/{{empleado.legajo}}">Ver</a></th>
+                    <th><a href="editar/{{empleado.legajo}}">Editar</a></th>
+                    <th><a href="eliminar/{{empleado.legajo}}">Eliminar</a></th>
+                    <th><a href="upload/{{empleado.legajo}}">Agregar Foto</a></th>
 
 
                 </tr>
@@ -68,5 +59,4 @@
     </div>
 
 </body>
-
-</html>
+{% endblock %}

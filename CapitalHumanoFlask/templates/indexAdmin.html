@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de personas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon"
+        href="https://cdn3.iconfinder.com/data/icons/family-member-flat-happy-family-day/512/Uncle-256.png"
+        type="image/x-icon">
+</head>
+<h1 class="title">
+  Welcome, {{ name }}!!!
+
+</h1>
+<body>
+
+    <div class='container-fluid'>
+        <div class="row text-white p-3" style="background-color: #563d7c;">
+            <h1 class="ml-5">Sistema de administracion de empleados </h1>
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-3">
+                <a href="admin/cargarSindicato">Agregar Sindicato</a>
+            </div>
+            <div class="col-3">
+                <a href="admin/cargarObraSocial">Agregar Obra Social</a>
+            </div>
+        </div>
+        <br>
+
+        <h2>Obras Sociales</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cuit</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Domicilio</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for obraSocial in obrasSociales%}
+                <tr>
+
+                    <td>{{obraSocial.nombre}}</td>
+                    <td>{{obraSocial.cuit}}</td>
+                    <td>{{obraSocial.telefono}}</td>
+                    <td>{{obraSocial.domicilio}}</td>
+                    <td></td>
+                    <th></th>
+                    <th><a href="admin/editarObraSocial/{{obraSocial.id}}">Editar</a></th>
+                    <th><a href="admin/eliminarObraSocial/{{obraSocial.id}}">Eliminar</a></th>
+                    <th></th>
+
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Sindicatos</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Domicilio</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for sindicato in sindicatos%}
+                <tr>
+                    <td scope="row">{{sindicato.nombre}}</td>
+                    <td>{{sindicato.telefono}}</td>
+                    <td>{{sindicato.domicilio}}</td>
+                    <th><a href="admin/editarSindicato/{{sindicato.id}}">Editar</a></th>
+                    <th><a href="admin/eliminarSindicato/{{sindicato.id}}">Eliminar</a></th>
+
+
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
